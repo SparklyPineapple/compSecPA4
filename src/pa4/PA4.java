@@ -44,7 +44,6 @@ public class PA4 {
         Scanner scanner = new Scanner("bible.txt");
         ArrayList wordList = new ArrayList();
         String word;
-        int time = 0;
 
         //makes a word list without duplicates that is easily accessable
         while (scanner.hasNext()) {
@@ -54,7 +53,7 @@ public class PA4 {
             }
         }
 
-        //solve hash and print result
+        //solve hash and print result in format (username, password, time it took to solve)
         System.out.println(solvePassword(wordList, alice));
         System.out.println(solvePassword(wordList, bob));
         System.out.println(solvePassword(wordList, chuck));
@@ -79,20 +78,31 @@ public class PA4 {
     }
 
     //checks words from the given arraylist
+    //makes educated hashes as guesses and sees if they match
     //returns the name, password and the time it took to calculate it
     private static String solvePassword(ArrayList wordList, Password pswd) {
-        String correctGuessUnsalted = ""; //use createGuess fuction to append correct salt onto end of "guess" hash
+        String correctGuess = ""; //use createGuess fuction to append correct salt onto end of "guess" hash
         String guess = "";
         String saltyGuess = "";
-        int time = 0;
-
+        long startTime = System.nanoTime();
+        long endTime=0; //initiakze when answer is found
+        boolean pswdFound = false;
         for (int i = 0; i < wordList.size(); i++) {
-
-            //checks words w/o case sensitiviey (make all lowercase)      
+            //checks words-case sensitiviey (make all lowercase)  
             //checks words with pre/post appended symbols,numbers and letters
             //checks words with sub of nums/symb
+            
+            if (pswdFound == true){
+                endTime = System.nanoTime();
+            }
         }
-        return (pswd + " " + correctGuessUnsalted + " " + time);
+        long time = endTime-startTime;
+        long milli = time/100000; 
+        long sec = milli/1000; 
+        long min = sec/60;
+        long hours = min/60;
+                
+        return (pswd + " " + correctGuess + " " + hours + ":" + min + ":" + sec + ":" + milli);
     }
 
 }
