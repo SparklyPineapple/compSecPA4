@@ -23,8 +23,8 @@ public class Password {
  
     }
     
-    public String createGuess(Password p, String s){
-        String guess = s + p.salt;
+    public String createGuess (String word){
+        String guess = word + this.salt;
         return guess;
     }
     
