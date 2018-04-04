@@ -10,5 +10,18 @@ package pa4;
  * @author Joshua
  */
 public class Password {
+    protected String name;
+    protected String salt;
+    protected String hash;
+    protected String plaintextPassword;
+    protected int time;
+    
+    public void password(String n, String s, String h){
+        name = n;
+        salt = s;
+        hash = h;
+        plaintextPassword = null;
+        time = 0;
+    }
     
 }
