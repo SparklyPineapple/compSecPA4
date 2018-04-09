@@ -56,7 +56,7 @@ public class PA4 {
         ArrayList pswds;
         ArrayList hashPswds;
         
-        pswds = preAndAppending(pswds, wordList);
+        //pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
 
         //solve hash and print result in format (username, password, time it took to solve)
@@ -137,7 +137,6 @@ public class PA4 {
                         }
                     }
                 }
-
             }
         }
 
