@@ -14,13 +14,13 @@ package pa4;
 public class Password {
     protected String salt;
     protected String hash;
+    protected String name;
     protected String plaintextPassword;
     
-    public Password(String s, String h){
+    public Password(String s, String h, String n){
         salt = s;
-        hash = h;
-        plaintextPassword = null;
- 
+        hash = h; 
+        name = n;
     }
     
     public String createGuess (String word){
@@ -30,6 +30,10 @@ public class Password {
     
     public String getHash (){
         return hash;
+    }
+    
+    public String getName(){
+        return name;
     }
     
 }
