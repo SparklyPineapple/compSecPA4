@@ -120,7 +120,7 @@ public class PA4 {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(temp.getBytes());
             byte[] digest = md.digest();
-            String myHash = DatatypeConverter.printHexBinary(digest);
+            String myHash = DatatypeConverter.printHexBinary(digest).toLowerCase();
             System.out.println(temp + " " + myHash);
             hashPswds.add(myHash);
         }
