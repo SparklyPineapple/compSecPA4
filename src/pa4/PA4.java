@@ -88,11 +88,10 @@ public class PA4 {
         String correctGuess = "correctGuess";
         String unhashedPswd = "unhashedPswd";
         long startTime = System.nanoTime();
-        long endTime = 0; //initiakze when answer is found
+        long endTime = 0; 
 
         //finds out of password is in list.
         if (hashList.contains(pswd)) {
-            
             correctGuess = (String) hashList.get(hashList.indexOf(pswd));
             endTime = System.nanoTime();
             unhashedPswd =(String)comboList.get(hashList.indexOf(pswd));
