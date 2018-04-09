@@ -69,6 +69,7 @@ public class PA4 {
 
         //make a method that will create all possible word combos & place in a list array 
         ArrayList pswds = new ArrayList();
+        pswds.addAll(wordList);
         ArrayList hashPswds = new ArrayList();
 
         generateHash(wordList, hashPswds, "");
