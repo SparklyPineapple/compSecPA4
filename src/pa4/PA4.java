@@ -110,13 +110,14 @@ public class PA4 {
         return (unhashedPswd + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
     }
     
-    private static void generateHash(ArrayList pswds, ArrayList hashPswds) throws NoSuchAlgorithmException {
+    private static void generateHash(ArrayList pswds, ArrayList hashPswds, String salt) throws NoSuchAlgorithmException {
         for (int i = 0; i < pswds.size(); i++){
-            String temp = (String)pswds.get(i);
+            String temp = (String)pswds.get(i) + salt;
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(temp.getBytes());
             byte[] digest = md.digest();
             String myHash = DatatypeConverter.printHexBinary(digest);
+            System.out.println(temp + " " + myHash);
             hashPswds.add(myHash);
         }
     
