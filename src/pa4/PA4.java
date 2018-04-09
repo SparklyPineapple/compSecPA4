@@ -49,9 +49,18 @@ public class PA4 {
         Scanner scanner = new Scanner(file);
         ArrayList wordList = new ArrayList();
         String word;
-
+        char firstLetter, lastLetter;
         while (scanner.hasNext()) {
             word = scanner.next();
+            firstLetter = word.charAt(0);
+            lastLetter = word.charAt(word.length()-1);
+            if (!Character.isLetterOrDigit(firstLetter)) {
+                word = word.substring(1);
+            }
+            if(!Character.isLetterOrDigit(firstLetter)){
+                word = word.substring(0, word.length()-1);
+            }
+                        
             if (!wordList.contains(word)) {
                 wordList.add(word);
             }
@@ -60,12 +69,11 @@ public class PA4 {
         //make a method that will create all possible word combos & place in a list array 
         ArrayList pswds = new ArrayList();
         ArrayList hashPswds = new ArrayList();
-        
+
         generateHash(wordList, hashPswds, "");
-        
+
         //pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
-
         //solve hash and print result in format (username, password, time it took to solve)
 //        System.out.println(solvePassword(hashList, pswds, alice));
 //        System.out.println(solvePassword(hashList, pswds, bob));
@@ -113,10 +121,10 @@ public class PA4 {
 
         return (unhashedPswd + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
     }
-    
+
     private static void generateHash(ArrayList pswds, ArrayList hashPswds, String salt) throws NoSuchAlgorithmException {
-        for (int i = 0; i < pswds.size(); i++){
-            String temp = (String)pswds.get(i) + salt;
+        for (int i = 0; i < pswds.size(); i++) {
+            String temp = (String) pswds.get(i) + salt;
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(temp.getBytes());
             byte[] digest = md.digest();
@@ -124,15 +132,15 @@ public class PA4 {
             System.out.println(temp + " " + myHash);
             hashPswds.add(myHash);
         }
-    
+
     }
-    
-    private static String singleSub(String password, String letter, String subbedLetter){
+
+    private static String singleSub(String password, String letter, String subbedLetter) {
         String subbedPass = password.replaceAll(letter, subbedLetter);
         return subbedPass;
     }
-    
-    private static String subAll(String password){
+
+    private static String subAll(String password) {
         String subbedPass = password.replaceAll("a", "@");
 //        subbedPass = subbedPass.replaceAll("b", "");
 //        subbedPass = subbedPass.replaceAll("c", "");
@@ -159,7 +167,7 @@ public class PA4 {
 //        subbedPass = subbedPass.replaceAll("x", "");
 //        subbedPass = subbedPass.replaceAll("y", "");
         subbedPass = subbedPass.replaceAll("z", "2");
-        
+
         return subbedPass;
     }
 
@@ -187,7 +195,7 @@ public class PA4 {
                         pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l));
                         for (int m = 0; m < digitList.length(); m++) {
                             //prepend 4 digits
-                            pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l)+ digitList.substring(m) + tempPswd);
+                            pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m) + tempPswd);
                             //append 4 digits
                             pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m));
                         }
