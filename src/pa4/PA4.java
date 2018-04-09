@@ -52,50 +52,51 @@ public class PA4 {
             }
         }
 
-        
         //make a method that will create all possible word combos & place in a list array 
-        //make a hashed copy of the list (adds salt too)
+        ArrayList pswds;
+        ArrayList hashPswds;
         
-        
-        
+        //pswds = preAndAppending(pswds, wordList);
+        //make a hashed copy of the list for each person (adds salt too) using createGuess()
+
         //solve hash and print result in format (username, password, time it took to solve)
-//        System.out.println(solvePassword(hashList, comboList, alice));
-//        System.out.println(solvePassword(hashList, comboList, bob));
-//        System.out.println(solvePassword(hashList, comboList, chuck));
-//        System.out.println(solvePassword(hashList, comboList, dan));
-//        System.out.println(solvePassword(hashList, comboList, ed));
-//        System.out.println(solvePassword(hashList, comboList, frank));
-//        System.out.println(solvePassword(hashList, comboList, george));
-//        System.out.println(solvePassword(hashList, comboList, harry));
-//        System.out.println(solvePassword(hashList, comboList, isaac));
-//        System.out.println(solvePassword(hashList, comboList, jack));
-//        System.out.println(solvePassword(hashList, comboList, ken));
-//        System.out.println(solvePassword(hashList, comboList, laura));
-//        System.out.println(solvePassword(hashList, comboList, mary));
-//        System.out.println(solvePassword(hashList, comboList, nancy));
-//        System.out.println(solvePassword(hashList, comboList, oprah));
-//        System.out.println(solvePassword(hashList, comboList, pam));
-//        System.out.println(solvePassword(hashList, comboList, quin));
-//        System.out.println(solvePassword(hashList, comboList, rob));
-//        System.out.println(solvePassword(hashList, comboList, sam));
-//        System.out.println(solvePassword(hashList, comboList, tom));
+//        System.out.println(solvePassword(hashList, pswds, alice));
+//        System.out.println(solvePassword(hashList, pswds, bob));
+//        System.out.println(solvePassword(hashList, pswds, chuck));
+//        System.out.println(solvePassword(hashList, pswds, dan));
+//        System.out.println(solvePassword(hashList, pswds, ed));
+//        System.out.println(solvePassword(hashList, pswds, frank));
+//        System.out.println(solvePassword(hashList, pswds, george));
+//        System.out.println(solvePassword(hashList, pswds, harry));
+//        System.out.println(solvePassword(hashList, pswds, isaac));
+//        System.out.println(solvePassword(hashList, pswds, jack));
+//        System.out.println(solvePassword(hashList, pswds, ken));
+//        System.out.println(solvePassword(hashList, pswds, laura));
+//        System.out.println(solvePassword(hashList, pswds, mary));
+//        System.out.println(solvePassword(hashList, pswds, nancy));
+//        System.out.println(solvePassword(hashList, pswds, oprah));
+//        System.out.println(solvePassword(hashList, pswds, pam));
+//        System.out.println(solvePassword(hashList, pswds, quin));
+//        System.out.println(solvePassword(hashList, pswds, rob));
+//        System.out.println(solvePassword(hashList, pswds, sam));
+//        System.out.println(solvePassword(hashList, pswds, tom));
     }
 
     //checks words from the given arraylist
     //makes educated hashes as guesses and sees if they match
     //returns the name, password and the time it took to calculate it
-    private static String solvePassword(ArrayList hashList, ArrayList comboList, Password usern) { 
-        String pswd=usern.getHash();
+    private static String solvePassword(ArrayList hashList, ArrayList comboList, Password usern) {
+        String pswd = usern.getHash();
         String unhashedPswd = "unhashedPswd";
         long startTime = System.nanoTime();
-        long endTime = 0; 
+        long endTime = 0;
 
         //finds out of password is in list.
         if (hashList.contains(pswd)) {
             endTime = System.nanoTime();
-            unhashedPswd =(String)comboList.get(hashList.indexOf(pswd));
+            unhashedPswd = (String) comboList.get(hashList.indexOf(pswd));
         }
-        
+
         //takes care of stopwatch
         long time = endTime - startTime;
         long milli = time / 100000;
@@ -140,6 +141,42 @@ public class PA4 {
         subbedPass = subbedPass.replaceAll("z", "2");
         
         return subbedPass;
+    }
+
+    private static ArrayList preAndAppending(ArrayList pswds, ArrayList wordList) {
+        //nums 0-9 at indecies 0-9, letters a-z at indices 34 & A-Z at 35-61, symbols 62- 89 (cant do \ and ")
+        String digitList = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~`!@#$%^&*()_-+={}[]:;'<>,.?/|'";
+        String tempPswd;
+        //append/prepend digits (as many as 4)
+        for (int i = 0; i < wordList.size(); i++) {
+            for (int j = 0; j < digitList.length(); j++) {
+                //prepend 1 digit
+                tempPswd = (String) wordList.get(i);
+                pswds.add(digitList.substring(j) + tempPswd);
+                //append 1 digit
+                pswds.add(tempPswd + digitList.substring(j));
+                for (int k = 0; k < digitList.length(); k++) {
+                    //prepend 2 digits
+                    pswds.add(digitList.substring(j) + digitList.substring(k) + tempPswd);
+                    //append 2 digits
+                    pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k));
+                    for (int l = 0; l < digitList.length(); l++) {
+                        //prepend 3 digits
+                        pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + tempPswd);
+                        //append 3 digits
+                        pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l));
+                        for (int m = 0; m < digitList.length(); m++) {
+                            //prepend 4 digits
+                            pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l)+ digitList.substring(m) + tempPswd);
+                            //append 4 digits
+                            pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m));
+                        }
+                    }
+                }
+            }
+        }
+
+        return pswds;
     }
 
 }
