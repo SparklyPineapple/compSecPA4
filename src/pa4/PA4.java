@@ -53,14 +53,15 @@ public class PA4 {
         while (scanner.hasNext()) {
             word = scanner.next();
             firstLetter = word.charAt(0);
-            lastLetter = word.charAt(word.length()-1);
-            if (!Character.isLetterOrDigit(firstLetter)) {
+            lastLetter = word.charAt(word.length() - 1);
+            while (!Character.isLetterOrDigit(firstLetter)) {
                 word = word.substring(1);
+                firstLetter = word.charAt(0);
             }
-            if(!Character.isLetterOrDigit(lastLetter)){
-                word = word.substring(0, word.length()-1);
+            while(!Character.isLetterOrDigit(lastLetter)){
+                word = word.substring(0, word.length() - 1);
+                lastLetter = word.charAt(word.length() - 1);
             }
-                        
             if (!wordList.contains(word)) {
                 wordList.add(word);
             }
