@@ -75,7 +75,7 @@ public class PA4 {
         //pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
         //solve hash and print result in format (username, password, time it took to solve)
-//        System.out.println(solvePassword(hashList, pswds, alice));
+//        System.out.println(solvePassword(hashPswds, pswds, alice));
 //        System.out.println(solvePassword(hashList, pswds, bob));
 //        System.out.println(solvePassword(hashList, pswds, chuck));
 //        System.out.println(solvePassword(hashList, pswds, dan));
@@ -100,17 +100,17 @@ public class PA4 {
     //checks words from the given arraylist
     //makes educated hashes as guesses and sees if they match
     //returns the name, password and the time it took to calculate it
-    private static String solvePassword(ArrayList hashList, ArrayList comboList, Password usern) {
-        String pswd = usern.getHash();
+    private static String solvePassword(ArrayList hashList, ArrayList pswds, Password usern) {
+        String pswdHash = usern.getHash();
         String unhashedPswd = "unhashedPswd";
         
         long startTime = System.nanoTime();
         long endTime = 0;
 
         //finds out of password is in list.
-        if (hashList.contains(pswd)) {
+        if (hashList.contains(pswdHash)) {
             endTime = System.nanoTime();
-            unhashedPswd = (String) comboList.get(hashList.indexOf(pswd));
+            unhashedPswd = (String) pswds.get(hashList.indexOf(pswdHash));
         }
 
         //takes care of stopwatch
@@ -120,7 +120,7 @@ public class PA4 {
         long min = sec / 60;
         long hours = min / 60;
 
-        return (unhashedPswd + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
+        return (usern + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
     }
 
     private static void generateHash(ArrayList pswds, ArrayList hashPswds, String salt) throws NoSuchAlgorithmException {
