@@ -3,6 +3,7 @@
  */
 package pa4;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -20,7 +21,7 @@ public class PA4 {
      * @param args the command line arguments
      * @throws java.io.FileNotFoundException
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, NoSuchAlgorithmException {
 
         Password alice = new Password(null, "8f5140bee08ae5847615c9b55e40e56f");
         Password bob = new Password(null, "f32fb20d098584d7cfc39a40a0dce4f2");
@@ -44,7 +45,8 @@ public class PA4 {
         Password tom = new Password("asdf", "850a7a3142acce590dc7a8ee02765358");
 
         //uses scanner to get all words from bible.txt and put them into the wordList
-        Scanner scanner = new Scanner("bible.txt");
+        File file = new File("bible.txt");
+        Scanner scanner = new Scanner(file);
         ArrayList wordList = new ArrayList();
         String word;
 
@@ -56,8 +58,10 @@ public class PA4 {
         }
 
         //make a method that will create all possible word combos & place in a list array 
-        ArrayList pswds;
-        ArrayList hashPswds;
+        ArrayList pswds = new ArrayList();
+        ArrayList hashPswds = new ArrayList();
+        
+        generateHash(wordList, hashPswds, "");
         
         //pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
