@@ -57,7 +57,7 @@ public class PA4 {
             if (!Character.isLetterOrDigit(firstLetter)) {
                 word = word.substring(1);
             }
-            if(!Character.isLetterOrDigit(firstLetter)){
+            if(!Character.isLetterOrDigit(lastLetter)){
                 word = word.substring(0, word.length()-1);
             }
                         
