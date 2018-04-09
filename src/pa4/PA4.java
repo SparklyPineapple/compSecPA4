@@ -45,7 +45,6 @@ public class PA4 {
         ArrayList wordList = new ArrayList();
         String word;
 
-        //makes a word list without duplicates that is easily accessable
         while (scanner.hasNext()) {
             word = scanner.next();
             if (!wordList.contains(word)) {
@@ -53,56 +52,62 @@ public class PA4 {
             }
         }
 
+        
+        //make a method that will create all possible w andord combos & place in a list array 
+        //make a hashed copy of the list (adds salt too)
+        
+        
+        
         //solve hash and print result in format (username, password, time it took to solve)
-        System.out.println(solvePassword(wordList, alice));
-        System.out.println(solvePassword(wordList, bob));
-        System.out.println(solvePassword(wordList, chuck));
-        System.out.println(solvePassword(wordList, dan));
-        System.out.println(solvePassword(wordList, ed));
-        System.out.println(solvePassword(wordList, frank));
-        System.out.println(solvePassword(wordList, george));
-        System.out.println(solvePassword(wordList, harry));
-        System.out.println(solvePassword(wordList, isaac));
-        System.out.println(solvePassword(wordList, jack));
-        System.out.println(solvePassword(wordList, ken));
-        System.out.println(solvePassword(wordList, laura));
-        System.out.println(solvePassword(wordList, mary));
-        System.out.println(solvePassword(wordList, nancy));
-        System.out.println(solvePassword(wordList, oprah));
-        System.out.println(solvePassword(wordList, pam));
-        System.out.println(solvePassword(wordList, quin));
-        System.out.println(solvePassword(wordList, rob));
-        System.out.println(solvePassword(wordList, sam));
-        System.out.println(solvePassword(wordList, tom));
-
+//        System.out.println(solvePassword(hashList, comboList, alice));
+//        System.out.println(solvePassword(hashList , comboList, bob));
+//        System.out.println(solvePassword(hashList, comboList, chuck));
+//        System.out.println(solvePassword(hashList, comboList, dan));
+//        System.out.println(solvePassword(hashList, comboList, ed));
+//        System.out.println(solvePassword(hashList, comboList, frank));
+//        System.out.println(solvePassword(hashList, comboList, george));
+//        System.out.println(solvePassword(hashList, comboList, harry));
+//        System.out.println(solvePassword(hashList, comboList, isaac));
+//        System.out.println(solvePassword(hashList, comboList, jack));
+//        System.out.println(solvePassword(hashList, comboList, ken));
+//        System.out.println(solvePassword(hashList, comboList, laura));
+//        System.out.println(solvePassword(hashList, comboList, mary));
+//        System.out.println(solvePassword(hashList, comboList, nancy));
+//        System.out.println(solvePassword(hashList, comboList, oprah));
+//        System.out.println(solvePassword(hashList, comboList, pam));
+//        System.out.println(solvePassword(hashList, comboList, quin));
+//        System.out.println(solvePassword(hashList, comboList, rob));
+//        System.out.println(solvePassword(hashList, comboList, sam));
+//        System.out.println(solvePassword(hashList, comboList, tom));
     }
 
     //checks words from the given arraylist
     //makes educated hashes as guesses and sees if they match
     //returns the name, password and the time it took to calculate it
-    private static String solvePassword(ArrayList wordList, Password pswd) {
-        String correctGuess = ""; //use createGuess fuction to append correct salt onto end of "guess" hash
-        String guess = "";
-        String saltyGuess = "";
+    private static String solvePassword(ArrayList hashList, ArrayList comboList, Password pswd) {
+        String correctGuess = "correctGuess";
+        String unhashedPswd = "unhashedPswd";
         long startTime = System.nanoTime();
-        long endTime=0; //initiakze when answer is found
-        boolean pswdFound = false;
-        for (int i = 0; i < wordList.size(); i++) {
-            //checks words-case sensitiviey (make all lowercase)  
-            //checks words with pre/post appended symbols,numbers and letters
-            //checks words with sub of nums/symb
+        long endTime = 0; //initiakze when answer is found
+
+        //finds out of password is in list.
+        if (hashList.contains(pswd)) {
             
-            if (pswdFound == true){
-                endTime = System.nanoTime();
-            }
+            correctGuess = (String) hashList.get(hashList.indexOf(pswd));
+            endTime = System.nanoTime();
+            unhashedPswd =(String)comboList.get(hashList.indexOf(pswd));
+        }else{
+            correctGuess = "password not found";
         }
-        long time = endTime-startTime;
-        long milli = time/100000; 
-        long sec = milli/1000; 
-        long min = sec/60;
-        long hours = min/60;
-                
-        return (pswd + " " + correctGuess + " " + hours + ":" + min + ":" + sec + ":" + milli);
+        
+        //takes care of stopwatch
+        long time = endTime - startTime;
+        long milli = time / 100000;
+        long sec = milli / 1000;
+        long min = sec / 60;
+        long hours = min / 60;
+
+        return (unhashedPswd + " " + correctGuess + " " + hours + ":" + min + ":" + sec + ":" + milli);
     }
 
 }
