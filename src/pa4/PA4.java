@@ -77,26 +77,26 @@ public class PA4 {
         //pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
         //solve hash and print result in format (username, password, time it took to solve)
-//        System.out.println(solvePassword(hashPswds, pswds, alice));
-//        System.out.println(solvePassword(hashList, pswds, bob));
-//        System.out.println(solvePassword(hashList, pswds, chuck));
-//        System.out.println(solvePassword(hashList, pswds, dan));
-//        System.out.println(solvePassword(hashList, pswds, ed));
-//        System.out.println(solvePassword(hashList, pswds, frank));
-//        System.out.println(solvePassword(hashList, pswds, george));
-//        System.out.println(solvePassword(hashList, pswds, harry));
-//        System.out.println(solvePassword(hashList, pswds, isaac));
-//        System.out.println(solvePassword(hashList, pswds, jack));
-//        System.out.println(solvePassword(hashList, pswds, ken));
-//        System.out.println(solvePassword(hashList, pswds, laura));
-//        System.out.println(solvePassword(hashList, pswds, mary));
-//        System.out.println(solvePassword(hashList, pswds, nancy));
-//        System.out.println(solvePassword(hashList, pswds, oprah));
-//        System.out.println(solvePassword(hashList, pswds, pam));
-//        System.out.println(solvePassword(hashList, pswds, quin));
-//        System.out.println(solvePassword(hashList, pswds, rob));
-//        System.out.println(solvePassword(hashList, pswds, sam));
-//        System.out.println(solvePassword(hashList, pswds, tom));
+        System.out.println(solvePassword(hashPswds, wordList, alice));
+        System.out.println(solvePassword(hashPswds, wordList, bob));
+        System.out.println(solvePassword(hashPswds, wordList, chuck));
+        System.out.println(solvePassword(hashPswds, wordList, dan));
+        System.out.println(solvePassword(hashPswds, wordList, ed));
+        System.out.println(solvePassword(hashPswds, wordList, frank));
+        System.out.println(solvePassword(hashPswds, wordList, george));
+        System.out.println(solvePassword(hashPswds, wordList, harry));
+        System.out.println(solvePassword(hashPswds, wordList, isaac));
+        System.out.println(solvePassword(hashPswds, wordList, jack));
+        System.out.println(solvePassword(hashPswds, wordList, ken));
+        System.out.println(solvePassword(hashPswds, wordList, laura));
+        System.out.println(solvePassword(hashPswds, wordList, mary));
+        System.out.println(solvePassword(hashPswds, wordList, nancy));
+        System.out.println(solvePassword(hashPswds, wordList, oprah));
+        System.out.println(solvePassword(hashPswds, wordList, pam));
+        System.out.println(solvePassword(hashPswds, wordList, quin));
+        System.out.println(solvePassword(hashPswds, wordList, rob));
+        System.out.println(solvePassword(hashPswds, wordList, sam));
+        System.out.println(solvePassword(hashPswds, wordList, tom));
     }
 
     //checks words from the given arraylist
@@ -132,7 +132,7 @@ public class PA4 {
             md.update(temp.getBytes());
             byte[] digest = md.digest();
             String myHash = DatatypeConverter.printHexBinary(digest).toLowerCase();
-            System.out.println(temp + " " + myHash);
+//            System.out.println(temp + " " + myHash);
             hashPswds.add(myHash);
         }
 
