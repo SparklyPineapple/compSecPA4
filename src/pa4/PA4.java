@@ -71,8 +71,11 @@ public class PA4 {
         ArrayList pswds = new ArrayList();
         pswds.addAll(wordList);
         ArrayList hashPswds = new ArrayList();
+        
+        upperLowerCase(pswds, wordList);
+        preAndAppending(pswds, wordList);
 
-        generateHash(wordList, hashPswds, "");
+        generateHash(pswds, hashPswds, "");
 
         //pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
