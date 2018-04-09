@@ -6,6 +6,9 @@ package pa4;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
@@ -105,6 +108,18 @@ public class PA4 {
         long hours = min / 60;
 
         return (unhashedPswd + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
+    }
+    
+    private static void generateHash(ArrayList pswds, ArrayList hashPswds) throws NoSuchAlgorithmException {
+        for (int i = 0; i < pswds.size(); i++){
+            String temp = (String)pswds.get(i);
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(temp.getBytes());
+            byte[] digest = md.digest();
+            String myHash = DatatypeConverter.printHexBinary(digest);
+            hashPswds.add(myHash);
+        }
+    
     }
     
     private static String singleSub(String password, String letter, String subbedLetter){
