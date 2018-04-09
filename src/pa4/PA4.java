@@ -103,6 +103,7 @@ public class PA4 {
     private static String solvePassword(ArrayList hashList, ArrayList comboList, Password usern) {
         String pswd = usern.getHash();
         String unhashedPswd = "unhashedPswd";
+        
         long startTime = System.nanoTime();
         long endTime = 0;
 
