@@ -53,14 +53,14 @@ public class PA4 {
         }
 
         
-        //make a method that will create all possible w andord combos & place in a list array 
+        //make a method that will create all possible word combos & place in a list array 
         //make a hashed copy of the list (adds salt too)
         
         
         
         //solve hash and print result in format (username, password, time it took to solve)
 //        System.out.println(solvePassword(hashList, comboList, alice));
-//        System.out.println(solvePassword(hashList , comboList, bob));
+//        System.out.println(solvePassword(hashList, comboList, bob));
 //        System.out.println(solvePassword(hashList, comboList, chuck));
 //        System.out.println(solvePassword(hashList, comboList, dan));
 //        System.out.println(solvePassword(hashList, comboList, ed));
@@ -84,19 +84,16 @@ public class PA4 {
     //checks words from the given arraylist
     //makes educated hashes as guesses and sees if they match
     //returns the name, password and the time it took to calculate it
-    private static String solvePassword(ArrayList hashList, ArrayList comboList, Password pswd) {
-        String correctGuess = "correctGuess";
+    private static String solvePassword(ArrayList hashList, ArrayList comboList, Password usern) { 
+        String pswd=usern.getHash();
         String unhashedPswd = "unhashedPswd";
         long startTime = System.nanoTime();
         long endTime = 0; 
 
         //finds out of password is in list.
         if (hashList.contains(pswd)) {
-            correctGuess = (String) hashList.get(hashList.indexOf(pswd));
             endTime = System.nanoTime();
             unhashedPswd =(String)comboList.get(hashList.indexOf(pswd));
-        }else{
-            correctGuess = "password not found";
         }
         
         //takes care of stopwatch
@@ -106,7 +103,7 @@ public class PA4 {
         long min = sec / 60;
         long hours = min / 60;
 
-        return (unhashedPswd + " " + correctGuess + " " + hours + ":" + min + ":" + sec + ":" + milli);
+        return (unhashedPswd + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
     }
 
 }
