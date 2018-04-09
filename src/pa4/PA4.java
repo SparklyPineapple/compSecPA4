@@ -55,6 +55,8 @@ public class PA4 {
         //make a method that will create all possible word combos & place in a list array 
         ArrayList pswds;
         ArrayList hashPswds;
+        
+        pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
 
         //solve hash and print result in format (username, password, time it took to solve)
