@@ -108,5 +108,41 @@ public class PA4 {
 
         return (unhashedPswd + " " + correctGuess + " " + hours + ":" + min + ":" + sec + ":" + milli);
     }
+    
+    private static String singleSub(String password, String letter, String subbedLetter){
+        String subbedPass = password.replaceAll(letter, subbedLetter);
+        return subbedPass;
+    }
+    
+    private static String subAll(String password){
+        String subbedPass = password.replaceAll("a", "@");
+//        subbedPass = subbedPass.replaceAll("b", "");
+//        subbedPass = subbedPass.replaceAll("c", "");
+//        subbedPass = subbedPass.replaceAll("d", "");
+        subbedPass = subbedPass.replaceAll("e", "3");
+//        subbedPass = subbedPass.replaceAll("f", "");
+//        subbedPass = subbedPass.replaceAll("g", "");
+//        subbedPass = subbedPass.replaceAll("h", "");
+        subbedPass = subbedPass.replaceAll("i", "!");
+//        subbedPass = subbedPass.replaceAll("j", "");
+//        subbedPass = subbedPass.replaceAll("k", "");
+        subbedPass = subbedPass.replaceAll("l", "1");
+//        subbedPass = subbedPass.replaceAll("m", "");
+//        subbedPass = subbedPass.replaceAll("n", "");
+        subbedPass = subbedPass.replaceAll("o", "0");
+//        subbedPass = subbedPass.replaceAll("p", "");
+//        subbedPass = subbedPass.replaceAll("q", "");
+//        subbedPass = subbedPass.replaceAll("r", "");
+        subbedPass = subbedPass.replaceAll("s", "$");
+        subbedPass = subbedPass.replaceAll("t", "7");
+//        subbedPass = subbedPass.replaceAll("u", "");
+//        subbedPass = subbedPass.replaceAll("v", "");
+//        subbedPass = subbedPass.replaceAll("w", "");
+//        subbedPass = subbedPass.replaceAll("x", "");
+//        subbedPass = subbedPass.replaceAll("y", "");
+        subbedPass = subbedPass.replaceAll("z", "2");
+        
+        return subbedPass;
+    }
 
 }
