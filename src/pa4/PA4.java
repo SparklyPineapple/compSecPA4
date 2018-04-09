@@ -58,7 +58,7 @@ public class PA4 {
                 word = word.substring(1);
                 firstLetter = word.charAt(0);
             }
-            while(!Character.isLetterOrDigit(lastLetter)){
+            while (!Character.isLetterOrDigit(lastLetter)) {
                 word = word.substring(0, word.length() - 1);
                 lastLetter = word.charAt(word.length() - 1);
             }
@@ -105,7 +105,7 @@ public class PA4 {
     private static String solvePassword(ArrayList hashList, ArrayList pswds, Password usern) {
         String pswdHash = usern.getHash();
         String unhashedPswd = "unhashedPswd";
-        
+
         long startTime = System.nanoTime();
         long endTime = 0;
 
@@ -207,6 +207,18 @@ public class PA4 {
             }
         }
 
+        return pswds;
+    }
+
+    private static ArrayList upperLowerCase(ArrayList pswds, ArrayList wordList) {
+        //just captitolizes first letter
+        String word, halfWord, letter;
+        for (int i = 0; i < wordList.size(); i++) {
+            word = (String) wordList.get(i);
+            halfWord = word.substring(1);
+            letter = (word.substring(0, 1)).toUpperCase();
+            pswds.add(letter + halfWord);
+        }
         return pswds;
     }
 
