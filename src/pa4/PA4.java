@@ -307,12 +307,15 @@ public class PA4 {
 
         for (int i = 0; i < size; i++) {
             test.addAll(ps);
-            upperLower(test);
+            //upperLower(test);
 
             String temp = (String) ps.get(i);
-
-            for (int k = 0; k < 9999; k++) {
-                String app = temp + k;
+            String app = "";
+            //try incremeanting a char to run though ascii symbols
+            for (int k = 32; k < 126; k++) {
+                app = (' ' + k) + temp;
+                test.add(app);
+                app = temp + (' ' + k);
                 test.add(app);
             }
             generateHash(test, hashPswds, "");
