@@ -76,17 +76,17 @@ public class PA4 {
 //        preAndAppending(pswds, wordList);
 
         upperCase(pswds);
-        singleSub(pswds, "A", "4");
-        singleSub(pswds, "a", "@");
-        singleSub(pswds, "B", "8");
+//        singleSub(pswds, "A", "4");
+//        singleSub(pswds, "a", "@");
+//        singleSub(pswds, "B", "8");
 //        singleSub(pswds, "g", "6");
-        singleSub(pswds, "e", "3");
-        singleSub(pswds, "i", "!");
-        singleSub(pswds, "l", "1");
-        singleSub(pswds, "o", "0");
-        singleSub(pswds, "s", "5");
-        singleSub(pswds, "t", "7");
-        singleSub(pswds, "z", "2");
+//        singleSub(pswds, "e", "3");
+//        singleSub(pswds, "i", "!");
+//        singleSub(pswds, "l", "1");
+//        singleSub(pswds, "o", "0");
+//        singleSub(pswds, "s", "5");
+//        singleSub(pswds, "t", "7");
+//        singleSub(pswds, "z", "2");
 
         generateHash(pswds, hashPswds, "uiop");
 
