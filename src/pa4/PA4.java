@@ -307,9 +307,19 @@ public class PA4 {
 
         for (int i = 0; i < size; i++) {
             test.addAll(ps);
-            upperLower(test);
-
-            String temp = (String) ps.get(i);
+//            upperLower(test);
+//            singleSub(test, "A", "4");
+            singleSub(test, "a", "@");
+//            singleSub(test, "B", "8");
+//            singleSub(test, "g", "6");
+            singleSub(test, "e", "3");
+            singleSub(test, "i", "!");
+            singleSub(test, "l", "1");
+            singleSub(test, "o", "0");
+            singleSub(test, "s", "5");
+            singleSub(test, "t", "7");
+            singleSub(test, "z", "2");
+            String temp = (String) test.get(i);
 
             for (int k = 0; k < 9999; k++) {
                 String app = temp + k;
