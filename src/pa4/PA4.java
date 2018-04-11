@@ -25,15 +25,15 @@ public class PA4 {
 
 //        Password alice = new Password(null, "8f5140bee08ae5847615c9b55e40e56f", "alice");
         Password bob = new Password(null, "f32fb20d098584d7cfc39a40a0dce4f2", "bob");
-        Password chuck = new Password(null, "cc4d706ba1c3017a156eeea9070dd9a9", "chuck");
+//        Password chuck = new Password(null, "cc4d706ba1c3017a156eeea9070dd9a9", "chuck");
         Password dan = new Password(null, "725321a069c71ab4a0d73b66f3a32544", "dan");
 //        Password ed = new Password(null, "798b8202a9ccd2b5271daf804bfcd45d", "ed");
 //        Password frank = new Password(null, "00fcb586544c2be44180cd85eaf24921", "frank");
         Password george = new Password(null, "6234e99a2940fa0eaa7d1f82537dfbb4", "george");
 //        Password harry = new Password(null, "2f5f7d26aee6df8c0d7d5fe5ea09e98c", "harry");
 //        Password isaac = new Password(null, "b95ddb19c0ea2ca56778720a138aa0ce", "isaac");
-        Password jack = new Password(null, "97c6be63844d947564b8687a019cc0f3", "jack");
-        Password ken = new Password(null, "4002e83daccc6a776c125d80b35e621c", "ken");
+//        Password jack = new Password(null, "97c6be63844d947564b8687a019cc0f3", "jack");
+//        Password ken = new Password(null, "4002e83daccc6a776c125d80b35e621c", "ken");
         Password laura = new Password(null, "94b3f5c480dbba6c169bbc149269da14", "laura");
         Password mary = new Password(null, "c33dff9a774add5dcad530b3a85facc9", "mary");
         Password nancy = new Password(null, "5e084369ef95582a8b8690f1dc3ab8f4", "nancy");
@@ -41,7 +41,7 @@ public class PA4 {
 //        Password pam = new Password("erty", "3dff33dcb40d5cf35be5d11f033fc895", "pam");
 //        Password quin = new Password("zxcv", "12c45f723d4a80dd89645b0fd05b6c5a", "quin");
 //        Password rob = new Password("hjkl", "e6fac5ee63591a415aa71616c86e9cae", "rob");
-        Password sam = new Password("uiop", "17cec957462e3ba4d167943ebd50bc93", "sam");
+//        Password sam = new Password("uiop", "17cec957462e3ba4d167943ebd50bc93", "sam");
 //        Password tom = new Password("asdf", "850a7a3142acce590dc7a8ee02765358", "tom");
 
         //uses scanner to get all words from bible.txt and put them into the wordList
@@ -75,18 +75,18 @@ public class PA4 {
 //        upperLowerCase(pswds, wordList);
 //        preAndAppending(pswds, wordList);
 
-//        appendABC(pswds);
-//        upperCase(pswds);
+        appendABC(pswds);
+        upperCase(pswds);
         lowerCase(pswds);
 //        singleSub(pswds, "A", "4");
-//        singleSub(pswds, "a", "@");
+        singleSub(pswds, "a", "@");
 //        singleSub(pswds, "B", "8");
 //        singleSub(pswds, "g", "6");
-//        singleSub(pswds, "e", "3");
-//        singleSub(pswds, "i", "l");
-//        singleSub(pswds, "l", "7");
-//        singleSub(pswds, "o", "0");
-//        singleSub(pswds, "s", "5");
+        singleSub(pswds, "e", "3");
+        singleSub(pswds, "i", "!");
+        singleSub(pswds, "l", "1");
+        singleSub(pswds, "o", "0");
+        singleSub(pswds, "s", "5");
 //        singleSub(pswds, "t", "7");
 //        singleSub(pswds, "z", "2");
 
@@ -97,15 +97,15 @@ public class PA4 {
         //solve hash and print result in format (username, password, time it took to solve)
 //        System.out.println(solvePassword(hashPswds, pswds, alice));
         System.out.println(solvePassword(hashPswds, pswds, bob));
-        System.out.println(solvePassword(hashPswds, pswds, chuck));
+//        System.out.println(solvePassword(hashPswds, pswds, chuck));
         System.out.println(solvePassword(hashPswds, pswds, dan));
 //        System.out.println(solvePassword(hashPswds, pswds, ed));
 //        System.out.println(solvePassword(hashPswds, pswds, frank));
         System.out.println(solvePassword(hashPswds, pswds, george));
 //        System.out.println(solvePassword(hashPswds, pswds, harry));
 //        System.out.println(solvePassword(hashPswds, pswds, isaac));
-        System.out.println(solvePassword(hashPswds, pswds, jack));
-        System.out.println(solvePassword(hashPswds, pswds, ken));
+//        System.out.println(solvePassword(hashPswds, pswds, jack));
+//        System.out.println(solvePassword(hashPswds, pswds, ken));
         System.out.println(solvePassword(hashPswds, pswds, laura));
         System.out.println(solvePassword(hashPswds, pswds, mary));
         System.out.println(solvePassword(hashPswds, pswds, nancy));
@@ -113,7 +113,7 @@ public class PA4 {
 //        System.out.println(solvePassword(hashPswds, pswds, pam));
 //        System.out.println(solvePassword(hashPswds, pswds, quin));
 //        System.out.println(solvePassword(hashPswds, pswds, rob));
-        System.out.println(solvePassword(hashPswds, pswds, sam));
+//        System.out.println(solvePassword(hashPswds, pswds, sam));
 //        System.out.println(solvePassword(hashPswds, pswds, tom));
     }
 
@@ -265,7 +265,7 @@ public class PA4 {
         int size = pswds.size();
         for(int i = 0; i < size; i++){
             String temp = (String) pswds.get(i);
-            String app = temp + "1";
+            String app = "abc" + temp;
             pswds.add(app);
         }
     
