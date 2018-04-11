@@ -36,6 +36,10 @@ public class Password {
         return name;
     }
     
+    public String getSalt(){
+        return salt;
+    }
+    
 }
 //        Password alice = new Password(null, "8f5140bee08ae5847615c9b55e40e56f");
 //        Password bob = new Password(null, "f32fb20d098584d7cfc39a40a0dce4f2");

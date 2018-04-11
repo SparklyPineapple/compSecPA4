@@ -71,8 +71,8 @@ public class PA4 {
         ArrayList pswds = new ArrayList();
         pswds.addAll(wordList);
         ArrayList hashPswds = new ArrayList();
-        
-        upperLowerCase(pswds, wordList);
+
+        //upperLowerCase(pswds, wordList);
         preAndAppending(pswds, wordList);
 
         generateHash(pswds, hashPswds, "");
@@ -80,14 +80,14 @@ public class PA4 {
         //pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
         //solve hash and print result in format (username, password, time it took to solve)
-        System.out.println(solvePassword(hashPswds, pswds, alice));
+        //System.out.println(solvePassword(hashPswds, pswds, alice));
         System.out.println(solvePassword(hashPswds, pswds, bob));
         System.out.println(solvePassword(hashPswds, pswds, chuck));
         System.out.println(solvePassword(hashPswds, pswds, dan));
-        System.out.println(solvePassword(hashPswds, pswds, ed));
+        //System.out.println(solvePassword(hashPswds, pswds, ed));
         System.out.println(solvePassword(hashPswds, pswds, frank));
         System.out.println(solvePassword(hashPswds, pswds, george));
-        System.out.println(solvePassword(hashPswds, pswds, harry));
+        //System.out.println(solvePassword(hashPswds, pswds, harry));
         System.out.println(solvePassword(hashPswds, pswds, isaac));
         System.out.println(solvePassword(hashPswds, pswds, jack));
         System.out.println(solvePassword(hashPswds, pswds, ken));
@@ -100,6 +100,50 @@ public class PA4 {
         System.out.println(solvePassword(hashPswds, pswds, rob));
         System.out.println(solvePassword(hashPswds, pswds, sam));
         System.out.println(solvePassword(hashPswds, pswds, tom));
+    }
+
+    private static void solveAll(String hashPswds) throws NoSuchAlgorithmException {
+        Password alice = new Password(null, "8f5140bee08ae5847615c9b55e40e56f", "alice");
+        Password bob = new Password(null, "f32fb20d098584d7cfc39a40a0dce4f2", "bob");
+        Password chuck = new Password(null, "cc4d706ba1c3017a156eeea9070dd9a9", "chuck");
+        Password dan = new Password(null, "725321a069c71ab4a0d73b66f3a32544", "dan");
+        Password ed = new Password(null, "798b8202a9ccd2b5271daf804bfcd45d", "ed");
+        Password frank = new Password(null, "00fcb586544c2be44180cd85eaf24921", "frank");
+        Password george = new Password(null, "6234e99a2940fa0eaa7d1f82537dfbb4", "george");
+        Password harry = new Password(null, "2f5f7d26aee6df8c0d7d5fe5ea09e98c", "harry");
+        Password isaac = new Password(null, "b95ddb19c0ea2ca56778720a138aa0ce", "isaac");
+        Password jack = new Password(null, "97c6be63844d947564b8687a019cc0f3", "jack");
+        Password ken = new Password(null, "4002e83daccc6a776c125d80b35e621c", "ken");
+        Password laura = new Password(null, "94b3f5c480dbba6c169bbc149269da14", "laura");
+        Password mary = new Password(null, "c33dff9a774add5dcad530b3a85facc9", "mary");
+        Password nancy = new Password(null, "5e084369ef95582a8b8690f1dc3ab8f4", "nancy");
+        Password oprah = new Password(null, "11c65b1362122712dfd665a483e394d0", "oprah");
+        Password pam = new Password("erty", "3dff33dcb40d5cf35be5d11f033fc895", "pam");
+        Password quin = new Password("zxcv", "12c45f723d4a80dd89645b0fd05b6c5a", "quin");
+        Password rob = new Password("hjkl", "e6fac5ee63591a415aa71616c86e9cae", "rob");
+        Password sam = new Password("uiop", "17cec957462e3ba4d167943ebd50bc93", "sam");
+        Password tom = new Password("asdf", "850a7a3142acce590dc7a8ee02765358", "tom");
+
+        solvePasswordSingle(hashPswds, bob);
+        solvePasswordSingle(hashPswds, chuck);
+        solvePasswordSingle(hashPswds, dan);
+        //System.out.println(solvePassword(hashPswds, pswds, ed));
+        //solvePasswordSingle(hashPswds, frank);
+        solvePasswordSingle(hashPswds, george);
+        //System.out.println(solvePassword(hashPswds, pswds, harry));
+        //solvePasswordSingle(hashPswds, isaac);
+        solvePasswordSingle(hashPswds, jack);
+        solvePasswordSingle(hashPswds, ken);
+        solvePasswordSingle(hashPswds, laura);
+        solvePasswordSingle(hashPswds, mary);
+        solvePasswordSingle(hashPswds, nancy);
+        solvePasswordSingle(hashPswds, oprah);
+        solvePasswordSingle(hashPswds, pam);
+        solvePasswordSingle(hashPswds, quin);
+        solvePasswordSingle(hashPswds, rob);
+        solvePasswordSingle(hashPswds, sam);
+        solvePasswordSingle(hashPswds, tom);
+
     }
 
     //checks words from the given arraylist
@@ -128,6 +172,32 @@ public class PA4 {
         return (usern.getName() + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
     }
 
+    private static void solvePasswordSingle(String pswd, Password usern) throws NoSuchAlgorithmException {
+        String pswdHash = usern.getHash();
+        String myHash = generateHashSingle(pswd, usern.getSalt());
+        String unhashedPswd = "unhashedPswd";
+
+        long startTime = System.nanoTime();
+        long endTime = 0;
+
+        //finds out of password is in list.
+        if (myHash.equals(pswdHash)) {
+            endTime = System.nanoTime();
+            unhashedPswd = myHash;
+        }
+
+        //takes care of stopwatch
+        long time = endTime - startTime;
+        long milli = time / 100000;
+        long sec = milli / 1000;
+        long min = sec / 60;
+        long hours = min / 60;
+
+        if (!unhashedPswd.equals("unhashedPswd")) {
+            System.out.println (usern.getName() + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
+        } 
+    }
+
     private static void generateHash(ArrayList pswds, ArrayList hashPswds, String salt) throws NoSuchAlgorithmException {
         for (int i = 0; i < pswds.size(); i++) {
             String temp = (String) pswds.get(i) + salt;
@@ -138,6 +208,18 @@ public class PA4 {
 //            System.out.println(temp + " " + myHash);
             hashPswds.add(myHash);
         }
+
+    }
+
+    private static String generateHashSingle(String pswds, String salt) throws NoSuchAlgorithmException {
+
+        String temp = pswds + salt;
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(temp.getBytes());
+        byte[] digest = md.digest();
+        String myHash = DatatypeConverter.printHexBinary(digest).toLowerCase();
+//            System.out.println(temp + " " + myHash);
+        return myHash;
 
     }
 
@@ -177,33 +259,51 @@ public class PA4 {
         return subbedPass;
     }
 
-    private static ArrayList preAndAppending(ArrayList pswds, ArrayList wordList) {
+    private static ArrayList preAndAppending(ArrayList pswds, ArrayList wordList) throws NoSuchAlgorithmException {
         //nums 0-9 at indecies 0-9, letters a-z at indices 34 & A-Z at 35-61, symbols 62- 89 (cant do \ and ")
         String digitList = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ~`!@#$%^&*()_-+={}[]:;'<>,.?/|'";
         String tempPswd;
+        String tempHash;
         //append/prepend digits (as many as 4)
+        int counter1 = 0;
+        int counter2 = 0;
         for (int i = 0; i < wordList.size(); i++) {
             for (int j = 0; j < digitList.length(); j++) {
+                System.out.println("counter1=" + counter1 + ", words left " + (wordList.size()-counter1));
+                counter1++;
                 //prepend 1 digit
                 tempPswd = (String) wordList.get(i);
-                pswds.add(digitList.substring(j) + tempPswd);
+
+                //pswds.add(digitList.substring(j) + tempPswd);
+                solveAll(digitList.substring(j) + tempPswd);
                 //append 1 digit
-                pswds.add(tempPswd + digitList.substring(j));
+                //pswds.add(tempPswd + digitList.substring(j));
+                solveAll(tempPswd + digitList.substring(j));
                 for (int k = 0; k < digitList.length(); k++) {
+                    //System.out.println("counter2=" + counter2);
+                    counter2++;
                     //prepend 2 digits
-                    pswds.add(digitList.substring(j) + digitList.substring(k) + tempPswd);
+                    //pswds.add(digitList.substring(j) + digitList.substring(k) + tempPswd);
+                    solveAll(digitList.substring(j) + digitList.substring(k) + tempPswd);
                     //append 2 digits
-                    pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k));
+                    //pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k));
+                    solveAll(tempPswd + digitList.substring(j) + digitList.substring(k));
                     for (int l = 0; l < digitList.length(); l++) {
+                        //System.out.println("3rd digit");
                         //prepend 3 digits
-                        pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + tempPswd);
+                        //pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + tempPswd);
+                        solveAll(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + tempPswd);
                         //append 3 digits
-                        pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l));
+                        //pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l));
+                        solveAll(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l));
                         for (int m = 0; m < digitList.length(); m++) {
+                            //System.out.println("4th digit");
                             //prepend 4 digits
-                            pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m) + tempPswd);
+                            //pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m) + tempPswd);
+                            solveAll(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m) + tempPswd);
                             //append 4 digits
-                            pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m));
+                            //pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m));
+                            solveAll(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m));
                         }
                     }
                 }
