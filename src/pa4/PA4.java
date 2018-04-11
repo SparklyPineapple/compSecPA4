@@ -115,7 +115,7 @@ public class PA4 {
     //checks words from the given arraylist
     //makes educated hashes as guesses and sees if they match
     //returns the name, password and the time it took to calculate it
-    private static String solvePassword(ArrayList hashList, ArrayList pswds, Password usern) {
+    private static void solvePassword(ArrayList hashList, ArrayList pswds, Password usern) {
         String pswdHash = usern.getHash();
         String unhashedPswd = "unhashedPswd";
 
@@ -135,7 +135,9 @@ public class PA4 {
         long min = sec / 60;
         long hours = min / 60;
 
-        return (usern.getName() + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
+        if (!unhashedPswd.equals("unhashedPswd")) {
+            System.out.println(usern.getName() + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
+        }
     }
 
     private static void generateHash(ArrayList pswds, ArrayList hashPswds, String salt) throws NoSuchAlgorithmException {
@@ -227,13 +229,13 @@ public class PA4 {
                 //append 1 digit
                 pending.add(tempPswd + digitList.substring(j));
                 generateHash(pending, hashPswds, "");
-                writer.println(solvePassword(hashPswds, pending, bob));
-                writer.println(solvePassword(hashPswds, pending, dan));
-                writer.println(solvePassword(hashPswds, pending, george));
-                writer.println(solvePassword(hashPswds, pending, laura));
-                writer.println(solvePassword(hashPswds, pending, mary));
-                writer.println(solvePassword(hashPswds, pending, nancy));
-                writer.println(solvePassword(hashPswds, pending, oprah));
+                solvePassword(hashPswds, pending, bob);
+                solvePassword(hashPswds, pending, dan);
+                solvePassword(hashPswds, pending, george);
+                solvePassword(hashPswds, pending, laura);
+                solvePassword(hashPswds, pending, mary);
+                solvePassword(hashPswds, pending, nancy);
+                solvePassword(hashPswds, pending, oprah);
                 hashPswds.clear();
                 pending.clear();
                 for (int k = 0; k < digitList.length(); k++) {
@@ -243,13 +245,13 @@ public class PA4 {
                     pending.add(tempPswd + digitList.substring(j) + digitList.substring(k));
                     pending.add(tempPswd + digitList.substring(j));
                     generateHash(pending, hashPswds, "");
-                    writer.println(solvePassword(hashPswds, pending, bob));
-                    writer.println(solvePassword(hashPswds, pending, dan));
-                    writer.println(solvePassword(hashPswds, pending, george));
-                    writer.println(solvePassword(hashPswds, pending, laura));
-                    writer.println(solvePassword(hashPswds, pending, mary));
-                    writer.println(solvePassword(hashPswds, pending, nancy));
-                    writer.println(solvePassword(hashPswds, pending, oprah));
+                    solvePassword(hashPswds, pending, bob);
+                    solvePassword(hashPswds, pending, dan);
+                    solvePassword(hashPswds, pending, george);
+                    solvePassword(hashPswds, pending, laura);
+                    solvePassword(hashPswds, pending, mary);
+                    solvePassword(hashPswds, pending, nancy);
+                    solvePassword(hashPswds, pending, oprah);
                     hashPswds.clear();
                     pending.clear();
                     for (int l = 0; l < digitList.length(); l++) {
@@ -259,13 +261,13 @@ public class PA4 {
                         pending.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l));
                         pending.add(tempPswd + digitList.substring(j));
                         generateHash(pending, hashPswds, "");
-                        writer.println(solvePassword(hashPswds, pending, bob));
-                        writer.println(solvePassword(hashPswds, pending, dan));
-                        writer.println(solvePassword(hashPswds, pending, george));
-                        writer.println(solvePassword(hashPswds, pending, laura));
-                        writer.println(solvePassword(hashPswds, pending, mary));
-                        writer.println(solvePassword(hashPswds, pending, nancy));
-                        writer.println(solvePassword(hashPswds, pending, oprah));
+                        solvePassword(hashPswds, pending, bob);
+                        solvePassword(hashPswds, pending, dan);
+                        solvePassword(hashPswds, pending, george);
+                        solvePassword(hashPswds, pending, laura);
+                        solvePassword(hashPswds, pending, mary);
+                        solvePassword(hashPswds, pending, nancy);
+                        solvePassword(hashPswds, pending, oprah);
                         hashPswds.clear();
                         pending.clear();
                         for (int m = 0; m < digitList.length(); m++) {
@@ -275,13 +277,13 @@ public class PA4 {
                             pending.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m));
                             pending.add(tempPswd + digitList.substring(j));
                             generateHash(pending, hashPswds, "");
-                            writer.println(solvePassword(hashPswds, pending, bob));
-                            writer.println(solvePassword(hashPswds, pending, dan));
-                            writer.println(solvePassword(hashPswds, pending, george));
-                            writer.println(solvePassword(hashPswds, pending, laura));
-                            writer.println(solvePassword(hashPswds, pending, mary));
-                            writer.println(solvePassword(hashPswds, pending, nancy));
-                            writer.println(solvePassword(hashPswds, pending, oprah));
+                            solvePassword(hashPswds, pending, bob);
+                            solvePassword(hashPswds, pending, dan);
+                            solvePassword(hashPswds, pending, george);
+                            solvePassword(hashPswds, pending, laura);
+                            solvePassword(hashPswds, pending, mary);
+                            solvePassword(hashPswds, pending, nancy);
+                            solvePassword(hashPswds, pending, oprah);
                             hashPswds.clear();
                             pending.clear();
                         }
