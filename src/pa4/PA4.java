@@ -75,20 +75,22 @@ public class PA4 {
 //        upperLowerCase(pswds, wordList);
 //        preAndAppending(pswds, wordList);
 
-        upperCase(pswds);
+//        appendABC(pswds);
+//        upperCase(pswds);
+        lowerCase(pswds);
 //        singleSub(pswds, "A", "4");
 //        singleSub(pswds, "a", "@");
 //        singleSub(pswds, "B", "8");
 //        singleSub(pswds, "g", "6");
 //        singleSub(pswds, "e", "3");
-//        singleSub(pswds, "i", "!");
-//        singleSub(pswds, "l", "1");
+//        singleSub(pswds, "i", "l");
+//        singleSub(pswds, "l", "7");
 //        singleSub(pswds, "o", "0");
 //        singleSub(pswds, "s", "5");
 //        singleSub(pswds, "t", "7");
 //        singleSub(pswds, "z", "2");
 
-        generateHash(pswds, hashPswds, "uiop");
+        generateHash(pswds, hashPswds, "");
 
         //pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
@@ -250,6 +252,23 @@ public class PA4 {
             String upper = temp.toUpperCase();
             pswds.add(upper);
         }
+    }
+    private static void lowerCase(ArrayList pswds) {
+        int size = pswds.size();
+        for (int i = 0; i < size; i++){
+            String temp = (String) pswds.get(i);
+            String lower = temp.toLowerCase();
+            pswds.add(lower);
+        }
+    }
+    private static void appendABC(ArrayList pswds) {
+        int size = pswds.size();
+        for(int i = 0; i < size; i++){
+            String temp = (String) pswds.get(i);
+            String app = temp + "1";
+            pswds.add(app);
+        }
+    
     }
 
 }
