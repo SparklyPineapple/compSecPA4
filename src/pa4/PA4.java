@@ -70,31 +70,30 @@ public class PA4 {
         //make a method that will create all possible word combos & place in a list array 
         ArrayList pswds = new ArrayList();
         pswds.addAll(wordList);
-        ArrayList hashPswds = new ArrayList();
-        
+//        ArrayList hashPswds = new ArrayList();
+
 //        upperLowerCase(pswds, wordList);
 //        preAndAppending(pswds, wordList);
-
-        appendABC(pswds);
+//        appendABC(pswds);
 //        upperCase(pswds);
 //        lowerCase(pswds);
-
 //        singleSub(pswds, "A", "4");
-        singleSub(pswds, "a", "@");
+//        singleSub(pswds, "a", "@");
 //        singleSub(pswds, "B", "8");
 //        singleSub(pswds, "g", "6");
-        singleSub(pswds, "e", "3");
-        singleSub(pswds, "i", "!");
-        singleSub(pswds, "l", "1");
-        singleSub(pswds, "o", "0");
-        singleSub(pswds, "s", "5");
+//        singleSub(pswds, "e", "3");
+//        singleSub(pswds, "i", "!");
+//        singleSub(pswds, "l", "1");
+//        singleSub(pswds, "o", "0");
+//        singleSub(pswds, "s", "5");
 //        singleSub(pswds, "t", "7");
 //        singleSub(pswds, "z", "2");
-        upperLower(pswds);
+//        upperLower(pswds);
+        appendNum(pswds);
 
-        generateHash(pswds, hashPswds, "");
+//        generateHash(pswds, hashPswds, "");
 
-        //pswds = preAndAppending(pswds, wordList);
+        /*        //pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
         //solve hash and print result in format (username, password, time it took to solve)
 //        System.out.println(solvePassword(hashPswds, pswds, alice));
@@ -116,13 +115,13 @@ public class PA4 {
 //        System.out.println(solvePassword(hashPswds, pswds, quin));
 //        System.out.println(solvePassword(hashPswds, pswds, rob));
 //        System.out.println(solvePassword(hashPswds, pswds, sam));
-//        System.out.println(solvePassword(hashPswds, pswds, tom));
+//        System.out.println(solvePassword(hashPswds, pswds, tom));*/
     }
 
     //checks words from the given arraylist
     //makes educated hashes as guesses and sees if they match
     //returns the name, password and the time it took to calculate it
-    private static String solvePassword(ArrayList hashList, ArrayList pswds, Password usern) {
+    private static void solvePassword(ArrayList hashList, ArrayList pswds, Password usern) {
         String pswdHash = usern.getHash();
         String unhashedPswd = "unhashedPswd";
 
@@ -142,7 +141,9 @@ public class PA4 {
         long min = sec / 60;
         long hours = min / 60;
 
-        return (usern.getName() + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
+        if (!unhashedPswd.equals("unhashedPswd")) {
+            System.out.println(usern.getName() + " " + unhashedPswd + " " + hours + ":" + min + ":" + sec + ":" + milli);
+        }
     }
 
     private static void generateHash(ArrayList pswds, ArrayList hashPswds, String salt) throws NoSuchAlgorithmException {
@@ -160,7 +161,7 @@ public class PA4 {
 
     private static void singleSub(ArrayList pswds, String letter, String subbedLetter) {
         int size = pswds.size();
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             String temp = (String) pswds.get(i);
             String subbedPass = temp.replaceAll(letter, subbedLetter);
             pswds.add(subbedPass);
@@ -245,33 +246,34 @@ public class PA4 {
         }
         return pswds;
     }
-    
-    
-    private static void upperCase(ArrayList pswds){
+
+    private static void upperCase(ArrayList pswds) {
         int size = pswds.size();
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             String temp = (String) pswds.get(i);
             String upper = temp.toUpperCase();
             pswds.add(upper);
         }
     }
+
     private static void lowerCase(ArrayList pswds) {
         int size = pswds.size();
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             String temp = (String) pswds.get(i);
             String lower = temp.toLowerCase();
             pswds.add(lower);
         }
     }
-    private static void upperLower(ArrayList pswds){
+
+    private static void upperLower(ArrayList pswds) {
         int size = pswds.size();
-        for (int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             String temp = (String) pswds.get(i);
             temp = temp.toLowerCase();
             String word = "";
-            for (int k = 0; k < temp.length(); k++){
+            for (int k = 0; k < temp.length(); k++) {
                 char c = temp.charAt(k);
-                if (k%2 == 0){
+                if (k % 2 == 0) {
                     c = Character.toUpperCase(c);
                 }
                 word = word + c;
@@ -279,15 +281,51 @@ public class PA4 {
             pswds.add(word);
         }
     }
-    
+
     private static void appendABC(ArrayList pswds) {
         int size = pswds.size();
-        for(int i = 0; i < size; i++){
+        for (int i = 0; i < size; i++) {
             String temp = (String) pswds.get(i);
-            String app = temp + "";
+            String app = temp + "1234";
             pswds.add(app);
         }
-    
+    }
+
+    private static void appendNum(ArrayList ps) throws NoSuchAlgorithmException {
+        Password bob = new Password(null, "f32fb20d098584d7cfc39a40a0dce4f2", "bob");
+//        Password dan = new Password(null, "725321a069c71ab4a0d73b66f3a32544", "dan");
+        Password george = new Password(null, "6234e99a2940fa0eaa7d1f82537dfbb4", "george");
+        Password laura = new Password(null, "94b3f5c480dbba6c169bbc149269da14", "laura");
+        Password mary = new Password(null, "c33dff9a774add5dcad530b3a85facc9", "mary");
+        Password nancy = new Password(null, "5e084369ef95582a8b8690f1dc3ab8f4", "nancy");
+        Password oprah = new Password(null, "11c65b1362122712dfd665a483e394d0", "oprah");
+
+        ArrayList hashPswds = new ArrayList();
+        ArrayList test = new ArrayList();
+
+        int size = ps.size();
+
+        for (int i = 0; i < size; i++) {
+            test.addAll(ps);
+            upperLower(test);
+
+            String temp = (String) ps.get(i);
+
+            for (int k = 0; k < 9999; k++) {
+                String app = temp + k;
+                test.add(app);
+            }
+            generateHash(test, hashPswds, "");
+            solvePassword(hashPswds, test, bob);
+//            solvePassword(hashPswds, test, dan);
+            solvePassword(hashPswds, test, george);
+            solvePassword(hashPswds, test, laura);
+            solvePassword(hashPswds, test, mary);
+            solvePassword(hashPswds, test, nancy);
+            solvePassword(hashPswds, test, oprah);
+            test.clear();
+            hashPswds.clear();
+        }
     }
 
 }
