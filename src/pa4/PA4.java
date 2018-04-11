@@ -76,8 +76,9 @@ public class PA4 {
 //        preAndAppending(pswds, wordList);
 
         appendABC(pswds);
-        upperCase(pswds);
-        lowerCase(pswds);
+//        upperCase(pswds);
+//        lowerCase(pswds);
+
 //        singleSub(pswds, "A", "4");
         singleSub(pswds, "a", "@");
 //        singleSub(pswds, "B", "8");
@@ -89,6 +90,7 @@ public class PA4 {
         singleSub(pswds, "s", "5");
 //        singleSub(pswds, "t", "7");
 //        singleSub(pswds, "z", "2");
+        upperLower(pswds);
 
         generateHash(pswds, hashPswds, "");
 
@@ -261,11 +263,28 @@ public class PA4 {
             pswds.add(lower);
         }
     }
+    private static void upperLower(ArrayList pswds){
+        int size = pswds.size();
+        for (int i = 0; i < size; i++){
+            String temp = (String) pswds.get(i);
+            temp = temp.toLowerCase();
+            String word = "";
+            for (int k = 0; k < temp.length(); k++){
+                char c = temp.charAt(k);
+                if (k%2 == 0){
+                    c = Character.toUpperCase(c);
+                }
+                word = word + c;
+            }
+            pswds.add(word);
+        }
+    }
+    
     private static void appendABC(ArrayList pswds) {
         int size = pswds.size();
         for(int i = 0; i < size; i++){
             String temp = (String) pswds.get(i);
-            String app = "abc" + temp;
+            String app = temp + "";
             pswds.add(app);
         }
     
