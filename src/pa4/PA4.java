@@ -23,15 +23,15 @@ public class PA4 {
      */
     public static void main(String[] args) throws FileNotFoundException, NoSuchAlgorithmException {
 
-        Password alice = new Password(null, "8f5140bee08ae5847615c9b55e40e56f", "alice");
+//        Password alice = new Password(null, "8f5140bee08ae5847615c9b55e40e56f", "alice");
         Password bob = new Password(null, "f32fb20d098584d7cfc39a40a0dce4f2", "bob");
         Password chuck = new Password(null, "cc4d706ba1c3017a156eeea9070dd9a9", "chuck");
         Password dan = new Password(null, "725321a069c71ab4a0d73b66f3a32544", "dan");
-        Password ed = new Password(null, "798b8202a9ccd2b5271daf804bfcd45d", "ed");
-        Password frank = new Password(null, "00fcb586544c2be44180cd85eaf24921", "frank");
+//        Password ed = new Password(null, "798b8202a9ccd2b5271daf804bfcd45d", "ed");
+//        Password frank = new Password(null, "00fcb586544c2be44180cd85eaf24921", "frank");
         Password george = new Password(null, "6234e99a2940fa0eaa7d1f82537dfbb4", "george");
-        Password harry = new Password(null, "2f5f7d26aee6df8c0d7d5fe5ea09e98c", "harry");
-        Password isaac = new Password(null, "b95ddb19c0ea2ca56778720a138aa0ce", "isaac");
+//        Password harry = new Password(null, "2f5f7d26aee6df8c0d7d5fe5ea09e98c", "harry");
+//        Password isaac = new Password(null, "b95ddb19c0ea2ca56778720a138aa0ce", "isaac");
         Password jack = new Password(null, "97c6be63844d947564b8687a019cc0f3", "jack");
         Password ken = new Password(null, "4002e83daccc6a776c125d80b35e621c", "ken");
         Password laura = new Password(null, "94b3f5c480dbba6c169bbc149269da14", "laura");
@@ -72,23 +72,35 @@ public class PA4 {
         pswds.addAll(wordList);
         ArrayList hashPswds = new ArrayList();
         
-        upperLowerCase(pswds, wordList);
-        preAndAppending(pswds, wordList);
+//        upperLowerCase(pswds, wordList);
+//        preAndAppending(pswds, wordList);
+
+        singleSub(pswds, "A", "4");
+        singleSub(pswds, "a", "@");
+        singleSub(pswds, "B", "8");
+        singleSub(pswds, "g", "6");
+        singleSub(pswds, "e", "3");
+        singleSub(pswds, "i", "!");
+        singleSub(pswds, "l", "1");
+        singleSub(pswds, "o", "0");
+        singleSub(pswds, "s", "5");
+        singleSub(pswds, "t", "7");
+        singleSub(pswds, "z", "2");
 
         generateHash(pswds, hashPswds, "");
 
         //pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
         //solve hash and print result in format (username, password, time it took to solve)
-        System.out.println(solvePassword(hashPswds, pswds, alice));
+//        System.out.println(solvePassword(hashPswds, pswds, alice));
         System.out.println(solvePassword(hashPswds, pswds, bob));
         System.out.println(solvePassword(hashPswds, pswds, chuck));
         System.out.println(solvePassword(hashPswds, pswds, dan));
-        System.out.println(solvePassword(hashPswds, pswds, ed));
-        System.out.println(solvePassword(hashPswds, pswds, frank));
+//        System.out.println(solvePassword(hashPswds, pswds, ed));
+//        System.out.println(solvePassword(hashPswds, pswds, frank));
         System.out.println(solvePassword(hashPswds, pswds, george));
-        System.out.println(solvePassword(hashPswds, pswds, harry));
-        System.out.println(solvePassword(hashPswds, pswds, isaac));
+//        System.out.println(solvePassword(hashPswds, pswds, harry));
+//        System.out.println(solvePassword(hashPswds, pswds, isaac));
         System.out.println(solvePassword(hashPswds, pswds, jack));
         System.out.println(solvePassword(hashPswds, pswds, ken));
         System.out.println(solvePassword(hashPswds, pswds, laura));
@@ -141,9 +153,13 @@ public class PA4 {
 
     }
 
-    private static String singleSub(String password, String letter, String subbedLetter) {
-        String subbedPass = password.replaceAll(letter, subbedLetter);
-        return subbedPass;
+    private static void singleSub(ArrayList pswds, String letter, String subbedLetter) {
+        int size = pswds.size();
+        for(int i = 0; i < size; i++){
+            String temp = (String) pswds.get(i);
+            String subbedPass = temp.replaceAll(letter, subbedLetter);
+            pswds.add(subbedPass);
+        }
     }
 
     private static String subAll(String password) {
@@ -186,22 +202,22 @@ public class PA4 {
             for (int j = 0; j < digitList.length(); j++) {
                 //prepend 1 digit
                 tempPswd = (String) wordList.get(i);
-                pswds.add(digitList.substring(j) + tempPswd);
+//                pswds.add(digitList.substring(j) + tempPswd);
                 //append 1 digit
                 pswds.add(tempPswd + digitList.substring(j));
                 for (int k = 0; k < digitList.length(); k++) {
                     //prepend 2 digits
-                    pswds.add(digitList.substring(j) + digitList.substring(k) + tempPswd);
+//                    pswds.add(digitList.substring(j) + digitList.substring(k) + tempPswd);
                     //append 2 digits
                     pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k));
                     for (int l = 0; l < digitList.length(); l++) {
                         //prepend 3 digits
-                        pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + tempPswd);
+//                        pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + tempPswd);
                         //append 3 digits
                         pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l));
                         for (int m = 0; m < digitList.length(); m++) {
                             //prepend 4 digits
-                            pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m) + tempPswd);
+//                            pswds.add(digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m) + tempPswd);
                             //append 4 digits
                             pswds.add(tempPswd + digitList.substring(j) + digitList.substring(k) + digitList.substring(l) + digitList.substring(m));
                         }
