@@ -38,11 +38,11 @@ public class PA4 {
         Password mary = new Password(null, "c33dff9a774add5dcad530b3a85facc9", "mary");
         Password nancy = new Password(null, "5e084369ef95582a8b8690f1dc3ab8f4", "nancy");
         Password oprah = new Password(null, "11c65b1362122712dfd665a483e394d0", "oprah");
-        Password pam = new Password("erty", "3dff33dcb40d5cf35be5d11f033fc895", "pam");
-        Password quin = new Password("zxcv", "12c45f723d4a80dd89645b0fd05b6c5a", "quin");
-        Password rob = new Password("hjkl", "e6fac5ee63591a415aa71616c86e9cae", "rob");
+//        Password pam = new Password("erty", "3dff33dcb40d5cf35be5d11f033fc895", "pam");
+//        Password quin = new Password("zxcv", "12c45f723d4a80dd89645b0fd05b6c5a", "quin");
+//        Password rob = new Password("hjkl", "e6fac5ee63591a415aa71616c86e9cae", "rob");
         Password sam = new Password("uiop", "17cec957462e3ba4d167943ebd50bc93", "sam");
-        Password tom = new Password("asdf", "850a7a3142acce590dc7a8ee02765358", "tom");
+//        Password tom = new Password("asdf", "850a7a3142acce590dc7a8ee02765358", "tom");
 
         //uses scanner to get all words from bible.txt and put them into the wordList
         File file = new File("bible.txt");
@@ -75,10 +75,11 @@ public class PA4 {
 //        upperLowerCase(pswds, wordList);
 //        preAndAppending(pswds, wordList);
 
+        upperCase(pswds);
         singleSub(pswds, "A", "4");
         singleSub(pswds, "a", "@");
         singleSub(pswds, "B", "8");
-        singleSub(pswds, "g", "6");
+//        singleSub(pswds, "g", "6");
         singleSub(pswds, "e", "3");
         singleSub(pswds, "i", "!");
         singleSub(pswds, "l", "1");
@@ -87,7 +88,7 @@ public class PA4 {
         singleSub(pswds, "t", "7");
         singleSub(pswds, "z", "2");
 
-        generateHash(pswds, hashPswds, "");
+        generateHash(pswds, hashPswds, "uiop");
 
         //pswds = preAndAppending(pswds, wordList);
         //make a hashed copy of the list for each person (adds salt too) using createGuess()
@@ -107,11 +108,11 @@ public class PA4 {
         System.out.println(solvePassword(hashPswds, pswds, mary));
         System.out.println(solvePassword(hashPswds, pswds, nancy));
         System.out.println(solvePassword(hashPswds, pswds, oprah));
-        System.out.println(solvePassword(hashPswds, pswds, pam));
-        System.out.println(solvePassword(hashPswds, pswds, quin));
-        System.out.println(solvePassword(hashPswds, pswds, rob));
+//        System.out.println(solvePassword(hashPswds, pswds, pam));
+//        System.out.println(solvePassword(hashPswds, pswds, quin));
+//        System.out.println(solvePassword(hashPswds, pswds, rob));
         System.out.println(solvePassword(hashPswds, pswds, sam));
-        System.out.println(solvePassword(hashPswds, pswds, tom));
+//        System.out.println(solvePassword(hashPswds, pswds, tom));
     }
 
     //checks words from the given arraylist
@@ -239,6 +240,16 @@ public class PA4 {
             pswds.add(letter + halfWord);
         }
         return pswds;
+    }
+    
+    
+    private static void upperCase(ArrayList pswds){
+        int size = pswds.size();
+        for (int i = 0; i < size; i++){
+            String temp = (String) pswds.get(i);
+            String upper = temp.toUpperCase();
+            pswds.add(upper);
+        }
     }
 
 }
